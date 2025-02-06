@@ -7,3 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Article.create({title: '素晴らしい記事', content: 'とても素晴らしい記事です。これは、本当にすごいです'})
+Article.create({title: 'よい記事', content: 'とてもよい記事です。これは、本当にすごいです'})
