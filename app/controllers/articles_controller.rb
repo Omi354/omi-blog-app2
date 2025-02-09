@@ -38,6 +38,13 @@ class ArticlesController < ApplicationController
 
   end
 
+  def destroy
+    article = Article.find(params[:id])
+    article.destroy!
+    flash[:notice] = '削除しました'
+    redirect_to root_path, status: :see_other
+  end
+
 
   private
   def article_params
