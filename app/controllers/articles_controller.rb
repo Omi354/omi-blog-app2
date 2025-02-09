@@ -14,9 +14,11 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
+      flash[:notice] = '保存に成功しました'
       redirect_to article_path(@article)
     else
-      render :new
+      flash.now[:alert] = '保存に失敗しました'
+      render :new, status: :unprocessable_entity
     end
 
   end
