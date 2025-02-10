@@ -1,0 +1,11 @@
+%h1 HOME
+.container
+  .tabs
+    .tabs_item.active
+      新着記事一覧
+    .tabs_item
+      タイムライン
+  = render partial: 'articles_index', locals: { articles: @articles }
+  = link_to new_article_path do
+    .float_btn
+      %i.fa.fa-plus
