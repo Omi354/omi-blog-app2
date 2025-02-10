@@ -64,6 +64,9 @@ group :development do
 
   # Convert erb to haml
   gem "erb2haml"
+
+  # Use annotate
+  gem 'annotate'
 end
 
 group :test do
