@@ -19,7 +19,10 @@ gem "jbuilder"
 # Use sass
 gem "dartsass-rails", "~> 0.5.1"
 # Use faker
-gem 'faker'
+gem "faker"
+# Update debug env
+gem "better_errors"
+gem "binding_of_caller"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -42,7 +45,7 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 # Use haml
-gem 'hamlit'
+gem "hamlit"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -66,7 +69,7 @@ group :development do
   gem "erb2haml"
 
   # Use annotate
-  gem 'annotate'
+  gem "annotate"
 end
 
 group :test do
@@ -74,4 +77,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
