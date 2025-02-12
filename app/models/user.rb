@@ -6,6 +6,10 @@ class User < ApplicationRecord
 
   has_many :articles
 
+  def has_written?(article)
+    self.articles.exists?(id: article.id)
+  end
+
   def display_name
     self.email.split('@').first
   end
