@@ -32,6 +32,10 @@ class Article < ApplicationRecord
     I18n.l self.created_at, format: :short
   end
 
+  def author_name
+    self.user.display_name
+  end
+
   private
   def minimum_length_title_and_content
     char_length = self.title.length + self.content.length
