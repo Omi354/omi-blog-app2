@@ -3,12 +3,17 @@
 # Table name: articles
 #
 #  id         :integer          not null, primary key
-#  title      :string
-#  content    :text
+#  user_id    :integer          not null
+#  title      :string           not null
+#  content    :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :integer
 #
+# Indexes
+#
+#  index_articles_on_user_id  (user_id)
+#
+
 
 
 class Article < ApplicationRecord
