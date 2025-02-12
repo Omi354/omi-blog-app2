@@ -5,7 +5,7 @@
     %div
       %p cohki0305
       %p= @article.display_created_at
-    - if user_signed_in?
+    - if current_user == @article.user
       .article_detail_actions
         .dropdown
           = image_tag 'actions.svg', class: 'dropbtn'
