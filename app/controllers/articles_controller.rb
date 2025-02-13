@@ -59,5 +59,4 @@ class ArticlesController < ApplicationController
   def set_article_with_user
     @article = current_user.articles.find(params[:id])
   end
-
 end

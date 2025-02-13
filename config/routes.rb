@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   root to: "articles#index"
   resources :articles do
-    resources :comments, only: [:new, :create]
+    resources :comments, only: [ :new, :create ]
   end
 end
