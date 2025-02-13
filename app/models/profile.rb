@@ -17,6 +17,6 @@
 #  index_profiles_on_user_id  (user_id)
 #
 class Profile < ApplicationRecord
+  enum :gender, [ :male, :female, :non_binary ]
   belongs_to :user
-
 end

@@ -32,4 +32,8 @@ class User < ApplicationRecord
   def display_name
     self.email.split("@").first
   end
+
+  def prepare_profile
+    self.profile || self.build_profile
+  end
 end

@@ -1,15 +1,24 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_profile
 
   def show
+    @profile = current_user.profile
   end
 
   def edit
-
+    @profile = current_user.prepare_profile
   end
 
   def update
+    @profile = current_user.prepare_profile
+    @profile.assign_attributes(profile_params)
+    if @profile.save
+      flash[:notice] = "更新に成功しました"
+      redirect_to profile_path
+    else
+      flash.now[:alert] = "更新に失敗しました"
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
@@ -17,7 +26,4 @@ class ProfilesController < ApplicationController
     params.require(:profile).permit(:birthday, :gender, :introduction, :nickname, :subscribed)
   end
 
-  def set_profile
-    @profile = current_user.profile
-  end
 end
