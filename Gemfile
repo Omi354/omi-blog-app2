@@ -74,7 +74,7 @@ group :development do
   gem "erb2haml"
 
   # Use annotate
-  gem "annotate"
+  gem "annotaterb"
 end
 
 group :test do
