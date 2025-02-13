@@ -26,6 +26,7 @@ class Article < ApplicationRecord
   validates :content, uniqueness: true
   validate :minimum_length_title_and_content
 
+  has_many :comments, dependent: :destroy
   belongs_to :user
 
   def display_created_at

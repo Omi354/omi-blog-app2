@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @comments = @article.comments.all
   end
 
   def new
@@ -58,5 +59,4 @@ class ArticlesController < ApplicationController
   def set_article_with_user
     @article = current_user.articles.find(params[:id])
   end
-
 end
