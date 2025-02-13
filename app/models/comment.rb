@@ -14,5 +14,7 @@
 #
 
 class Comment < ApplicationRecord
-  belongs_to :article, dependent: :destroy
+  validates :content, presence: true
+
+  belongs_to :article
 end
