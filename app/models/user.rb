@@ -33,6 +33,10 @@ class User < ApplicationRecord
     self.articles.exists?(id: article.id)
   end
 
+  def has_liked?(article)
+    self.likes.exists?(article_id: article.id)
+  end
+
   def display_name
     self.profile&.nickname || self.email.split("@").first
   end
