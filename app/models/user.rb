@@ -22,15 +22,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one :profile
+  has_one :profile, dependent: :destroy
   has_many :articles, dependent: :destroy
+
+  delegate :display_gender, :display_age, to: :profile, allow_nil: true
 
   def has_written?(article)
     self.articles.exists?(id: article.id)
   end
 
   def display_name
-    self.email.split("@").first
+    self.profile&.nickname || self.email.split("@").first
   end
 
   def prepare_profile
