@@ -32,5 +32,4 @@ class ProfilesController < ApplicationController
       :avatar
       )
   end
-
 end
