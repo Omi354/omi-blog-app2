@@ -21,7 +21,8 @@
         - if !current_page?(root_path)
           = link_to 'javascript:history.back()' do
             = image_tag 'back.svg'
-        %p.header_pageTitle 新着記事
+        %p.header_pageTitle
+          = link_to 'Blog App' , root_path
       - if user_signed_in?
         .dropdown
           = image_tag current_user.avatar_image, class: 'header_avatar dropbtn'

@@ -3,7 +3,6 @@ class FavoritesController < ApplicationController
 
   def index
     @favorite_articles = current_user.favorite_articles
-    debugger
   end
 
 end
