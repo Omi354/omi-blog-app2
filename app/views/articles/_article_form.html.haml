@@ -5,6 +5,9 @@
       %li= message
   = form_with model: article, local: true do |f|
     %div
+      = f.label :eye_catch, 'アイキャッチ画像', class: 'label'
+      = f.file_field :eye_catch
+    %div
       = f.label :title, 'タイトル', class: 'label'
       = f.text_field :title, class: 'text'
     %div
