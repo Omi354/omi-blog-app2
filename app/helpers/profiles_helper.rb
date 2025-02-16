@@ -4,6 +4,6 @@ module ProfilesHelper
   end
 
   def map_genders_array
-    Profile.genders.map { |k, v| [I18n.t("enum.genders.#{k}"), k]}
+    Profile.genders.map { |k, v| [ I18n.t("enum.genders.#{k}"), k ] }
   end
 end
