@@ -50,6 +50,9 @@ class User < ApplicationRecord
     self.profile&.gender || "unknown"
   end
 
+  def has_followed?(user)
+    self.followings.exists?(user.id)
+  end
 
   def follow!(user)
     self.following_relationships.create!(following_id: user.id)

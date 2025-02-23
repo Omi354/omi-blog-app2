@@ -9,8 +9,11 @@
         .profilePage_user_actionButton
           - if user == current_user
             = link_to 'Edit', edit_profile_path
+          - elsif current_user&.has_followed?(user)
+            = link_to 'Unfollow', account_following_path(account_id: user.id, id: current_user.following_relationships.find_by(following_id: user.id).id), data: { turbo_method: :delete }
           - else
-            = link_to 'Follow', user_followings_path(user), data: { turbo_method: :post }
+            = link_to 'Follow', account_followings_path(user), data: { turbo_method: :post }
+
       .profilePage_user_introduction
         %p= user.profile&.introduction
 
