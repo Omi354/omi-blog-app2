@@ -1,5 +1,4 @@
 class AccountsController < ApplicationController
-
   def show
     if User.find(params[:id]) == current_user
       redirect_to profile_path

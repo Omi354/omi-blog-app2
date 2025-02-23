@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   resources :accounts, only: [ :show ] do
-    resources :followings, only: [:index, :create, :destroy]
+    resources :followings, only: [ :index, :create, :destroy ]
   end
   resources :favorites, only: [ :index ]
   resource :profile, only: [ :show, :edit, :update ]

@@ -14,5 +14,4 @@ class FollowingsController < ApplicationController
     flash[:notice] = "フォローを解除しました"
     redirect_to account_path(user)
   end
-
 end
