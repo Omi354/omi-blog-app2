@@ -3,7 +3,6 @@
 # Table name: articles
 #
 #  id         :bigint           not null, primary key
-#  content    :text             not null
 #  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -20,15 +19,16 @@ class Article < ApplicationRecord
   validates :title, format: { with: /\A(?!@).*/ }
 
   validates :content, presence: true
-  validates :content, length: { minimum: 10 }
-  validates :content, uniqueness: true
-  validate :minimum_length_title_and_content
+
+  has_one_attached :eye_catch
+  has_rich_text :content
 
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_one_attached :eye_catch
-
   belongs_to :user
+
+  validate :validate_content_length
+  validate :minimum_length_title_and_content
 
   def display_created_at
     I18n.l self.created_at, format: :short
@@ -39,9 +39,16 @@ class Article < ApplicationRecord
   end
 
   private
+  def validate_content_length
+    if content.present? && content.body.to_plain_text.length < 10
+      errors.add(:content, "は10文字以上で入力してください")
+    end
+  end
+
   def minimum_length_title_and_content
-    char_length = self.title.length + self.content.length
-    minimum_length = 50
-    errors.add(:content, "100文字以上の入力が必要です") if char_length <= minimum_length
+    content_length = content.body.to_plain_text.length
+    char_length = title.length + content_length
+    minimum_length = 20
+    errors.add(:content, "#{minimum_length}文字以上の入力が必要です") if char_length <= minimum_length
   end
 end

@@ -27,7 +27,7 @@ RUN bundle config set --local path '/usr/local/bundle' && \
 
 # Install node modules
 COPY package.json yarn.lock ./
-# RUN yarn install
+RUN yarn install
 
 # Copy application code
 COPY . .
