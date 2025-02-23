@@ -33,8 +33,4 @@ class Profile < ApplicationRecord
 
     "#{age}歳"
   end
-
-  def display_gender
-    self.gender || "unknown"
-  end
 end

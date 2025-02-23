@@ -10,7 +10,7 @@
           - if user == current_user
             = link_to 'Edit', edit_profile_path
           - else
-            = link_to 'Follow', #
+            = link_to 'Follow', user_followings_path(user), data: { turbo_method: :post }
       .profilePage_user_introduction
         %p= user.profile&.introduction
 
