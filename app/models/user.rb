@@ -32,7 +32,7 @@ class User < ApplicationRecord
   has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
   has_many :followers, through: :follower_relationships, source: :follower
 
-  delegate :display_gender, :display_age, to: :profile, allow_nil: true
+  delegate :display_age, to: :profile, allow_nil: true
 
   def has_written?(article)
     self.articles.exists?(id: article.id)
@@ -45,6 +45,11 @@ class User < ApplicationRecord
   def display_name
     self.profile&.nickname || self.email.split("@").first
   end
+
+  def display_gender
+    self.profile&.gender || "unknown"
+  end
+
 
   def follow!(user)
     self.following_relationships.create!(following_id: user.id)

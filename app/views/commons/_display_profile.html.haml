@@ -1,0 +1,19 @@
+.container.profilePage
+  .profilePage_user
+    .profilePage_user_image
+      = image_tag user.avatar_image
+    .profilePage_user_basicInfo
+      .profilePage_user_name
+        .profilePage_user_displayName
+          #{user.display_name} (#{user.display_age || '?歳'}・#{i18n_gender(user)})
+        .profilePage_user_actionButton
+          - if user == current_user
+            = link_to 'Edit', edit_profile_path
+          - else
+            = link_to 'Follow', #
+      .profilePage_user_introduction
+        %p= user.profile&.introduction
+
+.container
+  - user.articles.each do |article|
+    = render partial: 'commons/articles_index', locals: { article: article }
