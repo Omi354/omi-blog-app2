@@ -27,7 +27,12 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :favorite_articles, through: :likes, source: :article
 
-  delegate :display_gender, :display_age, to: :profile, allow_nil: true
+  has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
+  has_many :followings, through: :following_relationships, source: :following
+  has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
+  has_many :followers, through: :follower_relationships, source: :follower
+
+  delegate :display_age, to: :profile, allow_nil: true
 
   def has_written?(article)
     self.articles.exists?(id: article.id)
@@ -39,6 +44,23 @@ class User < ApplicationRecord
 
   def display_name
     self.profile&.nickname || self.email.split("@").first
+  end
+
+  def display_gender
+    self.profile&.gender || "unknown"
+  end
+
+  def has_followed?(user)
+    self.followings.exists?(user.id)
+  end
+
+  def follow!(user)
+    self.following_relationships.create!(following_id: user.id)
+  end
+
+  def unfollow!(user)
+    relationship = self.following_relationships.find_by!(following_id: user.id)
+    relationship.destroy!
   end
 
   def prepare_profile
