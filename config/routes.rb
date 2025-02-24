@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   end
   resources :favorites, only: [ :index ]
   resource :profile, only: [ :show, :edit, :update ]
+  resource :timeline, only: [ :show ]
 end
