@@ -1,0 +1,3 @@
+= render 'commons/articles_tabs'
+- articles.each do |article|
+  = render partial: 'commons/articles_index', locals: { article: article }
