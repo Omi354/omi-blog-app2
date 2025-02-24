@@ -1,12 +1,3 @@
 %h1 HOME
 .container
-  .tabs
-    .tabs_item.active
-      新着記事一覧
-    .tabs_item
-      タイムライン
-  - @articles.each do |article|
-    = render partial: 'commons/articles_index', locals: { article: article }
-  = link_to new_article_path do
-    .float_btn
-      %i.fa.fa-plus
+  = render 'commons/articles', articles: @articles
