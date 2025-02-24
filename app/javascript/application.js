@@ -4,3 +4,10 @@ import "controllers"
 
 import "trix"
 import "@rails/actiontext"
+
+import jquery from "jquery"
+window.$ = jquery
+
+$(function(){
+  alert("jQuery 動いた！")
+})
