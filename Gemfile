@@ -62,7 +62,7 @@ gem "aws-sdk-s3", "~> 1.181"
 gem "image_processing", "~> 1.2"
 
 # Use Active decorator
-gem 'active_decorator'
+gem "active_decorator"
 
 
 group :development, :test do

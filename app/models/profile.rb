@@ -20,5 +20,4 @@ class Profile < ApplicationRecord
   enum :gender, [ :male, :female, :non_binary ]
   has_one_attached :avatar
   belongs_to :user
-
 end

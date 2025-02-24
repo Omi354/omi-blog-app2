@@ -58,5 +58,4 @@ class User < ApplicationRecord
   def prepare_profile
     self.profile || self.build_profile
   end
-
 end
