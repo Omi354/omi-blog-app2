@@ -30,14 +30,6 @@ class Article < ApplicationRecord
   validate :validate_content_length
   validate :minimum_length_title_and_content
 
-  def display_created_at
-    I18n.l self.created_at, format: :short
-  end
-
-  def author_name
-    self.user.display_name
-  end
-
   private
   def validate_content_length
     if content.present? && content.body.to_plain_text.length < 10

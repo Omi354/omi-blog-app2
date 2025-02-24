@@ -42,14 +42,6 @@ class User < ApplicationRecord
     self.likes.exists?(article_id: article.id)
   end
 
-  def display_name
-    self.profile&.nickname || self.email.split("@").first
-  end
-
-  def display_gender
-    self.profile&.gender || "unknown"
-  end
-
   def has_followed?(user)
     self.followings.exists?(user.id)
   end
@@ -67,11 +59,4 @@ class User < ApplicationRecord
     self.profile || self.build_profile
   end
 
-  def avatar_image
-    if self.profile&.avatar&.attached?
-      self.profile.avatar
-    else
-      "default-avatar.png"
-    end
-  end
 end
