@@ -1,3 +1,6 @@
 = render 'commons/articles_tabs'
 - articles.each do |article|
   = render partial: 'commons/articles_index', locals: { article: article }
+= link_to new_article_path do
+  .float_btn
+    %i.fa.fa-plus
