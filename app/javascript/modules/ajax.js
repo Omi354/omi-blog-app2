@@ -6,7 +6,7 @@ const csrfToken = document.getElementsByName('csrf-token')[0].content
 axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
 window.$ = jQuery
 
-export const initializeHeartStatus = (articleId) => {
+export const fetchHeartStatus = (articleId) => {
   axios.get(`/articles/${articleId}/like`)
     .then(response => {
       const hasLiked = response.data.hasLiked
@@ -17,7 +17,7 @@ export const initializeHeartStatus = (articleId) => {
     })
 }
 
-export const postLike = (articleId) => {
+export const submitLike = (articleId) => {
   $('.heart-inactive').on('click', () => {
     axios.post(`/articles/${articleId}/like`)
       .then(response => {
@@ -31,7 +31,7 @@ export const postLike = (articleId) => {
   })
 }
 
-export const deleteLike = (articleId) => {
+export const removeLike = (articleId) => {
   $('.heart-active').on('click', () => {
     axios.delete(`/articles/${articleId}/like`)
       .then(response => {

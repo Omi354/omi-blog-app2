@@ -5,7 +5,7 @@ import "trix"
 import "@rails/actiontext"
 import jQuery from "jquery"
 import 'axios'
-import { initializeHeartStatus, postLike, deleteLike } from "modules/ajax"
+import { fetchHeartStatus, submitLike, removeLike } from "modules/ajax"
 
 const csrfToken = document.getElementsByName('csrf-token')[0].content
 axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
@@ -15,7 +15,7 @@ document.addEventListener('turbo:load', () => {
     const dataset = $('#article-show').data()
     const articleId = dataset.articleId
 
-    initializeHeartStatus(articleId)
-    postLike(articleId)
-    deleteLike(articleId)
+    fetchHeartStatus(articleId)
+    submitLike(articleId)
+    removeLike(articleId)
 })
