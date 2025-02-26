@@ -44,3 +44,18 @@ export const removeLike = (articleId) => {
       })
   })
 }
+
+export const fetchComments = (articleId) => {
+  axios.get(`/articles/${articleId}/comments`)
+  .then(response => {
+      const comments = response.data
+      comments.forEach(comment => {
+          $('.comments_container').append(
+              `<dev class=""article_comment><p>${comment.content}</p></div>`
+          )
+      });
+  })
+  .catch(error => {
+    console.error('Error:', error)
+  })
+}
