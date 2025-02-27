@@ -19,4 +19,7 @@ textarea, trix-editor {
   resize: vertical;
   background-color: #FFFFFF;
   border: 1px solid #EBEBEB;
+  &.sm {
+    min-height: 160px;
+  }
 }

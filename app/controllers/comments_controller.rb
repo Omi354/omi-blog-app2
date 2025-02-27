@@ -1,6 +1,12 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create ]
 
+  def index
+    article = Article.find(params[:article_id])
+    comments = article.comments
+    render json: comments
+  end
+
   def new
     article = Article.find(params[:article_id])
     @comment = article.comments.build
@@ -10,11 +16,9 @@ class CommentsController < ApplicationController
     article = Article.find(params[:article_id])
     @comment = article.comments.build(comment_params)
     if @comment.save
-      flash[:notice] = "コメントに成功しました"
-      redirect_to article_path(article)
+      render json: @comment, status: :created
     else
-      flash.now[:alert] = "コメントに失敗しました"
-      render :new, status: :unprocessable_entity
+      render json: { errors: @comment.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
