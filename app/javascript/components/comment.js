@@ -7,3 +7,9 @@ export const showCommentForm = () => {
     $('.comment-form').removeClass('hidden')
   })
 }
+
+export const appendComment = (comment) => {
+  $('.comments_container').append(
+    `<dev class=""article_comment><p>${comment.content}</p></div>`
+  )
+}
