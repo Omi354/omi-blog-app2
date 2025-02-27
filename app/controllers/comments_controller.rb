@@ -14,9 +14,12 @@ class CommentsController < ApplicationController
 
   def create
     article = Article.find(params[:article_id])
-    comment = article.comments.build(comment_params)
-    comment.save!
-    render json: comment
+    @comment = article.comments.build(comment_params)
+    if @comment.save
+      render json: @comment, status: :created
+    else
+      render json: { errors: @comment.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private

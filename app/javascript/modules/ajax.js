@@ -1,11 +1,8 @@
-import jQuery from "jquery"
-import 'axios'
+import $ from "modules/jquery"
+import axios from "modules/axios"
 import { handleHeartDisplay, displayHeartActive, displayHeartInactive } from "components/like"
 import { appendComment } from "components/comment"
 
-const csrfToken = document.getElementsByName('csrf-token')[0].content
-axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
-window.$ = jQuery
 
 export const fetchHeartStatus = (articleId) => {
   axios.get(`/articles/${articleId}/like`)
@@ -62,7 +59,7 @@ export const fetchComments = (articleId) => {
 export const submitComment = (articleId) => {
   $('#comment-submit-btn').on('click', () => {
     const content = $('#comment').val()
-    if (content == '') {
+    if (!content) {
         window.alert('コメントを入力してください')
         return;
     }
@@ -75,7 +72,11 @@ export const submitComment = (articleId) => {
         $('#comment').val('')
     })
       .catch(error => {
-        console.log(error)
+          if (error.response && error.response.data.errors) {
+          alert(error.response.data.errors.join(', '))
+        } else {
+          console.log(error)
+        }
       })
   })
 }

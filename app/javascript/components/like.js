@@ -1,5 +1,4 @@
-import jQuery from "jquery"
-window.$ = jQuery
+import $ from "modules/jquery"
 
 export const handleHeartDisplay = (hasLiked) => {
   if (hasLiked) {
