@@ -87,6 +87,10 @@ group :development do
 
   # Use annotate
   gem "annotaterb"
+
+  # Use letter opener
+  gem "letter_opener"
+  gem "letter_opener_web"
 end
 
 group :test do
