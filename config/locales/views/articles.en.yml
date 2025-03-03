@@ -1,0 +1,5 @@
+en:
+  article_show:
+    article_comments: 'Comments List'
+    btn:
+      submit_comment: 'Add Comment'
