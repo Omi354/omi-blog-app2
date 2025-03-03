@@ -5,7 +5,7 @@ import { appendComment } from "components/comment"
 
 
 export const fetchHeartStatus = (articleId) => {
-  axios.get(`/articles/${articleId}/like`)
+  axios.get(`/api/articles/${articleId}/like`)
     .then(response => {
       const hasLiked = response.data.hasLiked
       handleHeartDisplay(hasLiked)
@@ -17,7 +17,7 @@ export const fetchHeartStatus = (articleId) => {
 
 export const submitLike = (articleId) => {
   $('.heart-inactive').on('click', () => {
-    axios.post(`/articles/${articleId}/like`)
+    axios.post(`/api/articles/${articleId}/like`)
       .then(response => {
         if(response.data.status == 'ok') {
           displayHeartActive()
@@ -31,7 +31,7 @@ export const submitLike = (articleId) => {
 
 export const removeLike = (articleId) => {
   $('.heart-active').on('click', () => {
-    axios.delete(`/articles/${articleId}/like`)
+    axios.delete(`/api/articles/${articleId}/like`)
       .then(response => {
         if(response.data.status == 'ok') {
           displayHeartInactive()
@@ -44,7 +44,7 @@ export const removeLike = (articleId) => {
 }
 
 export const fetchComments = (articleId) => {
-  axios.get(`/articles/${articleId}/comments`)
+  axios.get(`/api/articles/${articleId}/comments`)
   .then(response => {
       const comments = response.data
       comments.forEach(comment => {
@@ -64,7 +64,7 @@ export const submitComment = (articleId) => {
         return;
     }
 
-    axios.post(`/articles/${articleId}/comments`,
+    axios.post(`/api/articles/${articleId}/comments`,
         { comment: { content: content } }
     )
       .then(response => {

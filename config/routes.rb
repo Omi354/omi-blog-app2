@@ -17,15 +17,18 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   root to: "articles#index"
 
-  resources :articles do
-    resources :comments, only: [ :index, :new, :create ]
-    resource :like, only: [ :create, :destroy, :show ]
-  end
-
+  resources :articles
   resources :accounts, only: [ :show ] do
     resources :followings, only: [ :index, :create, :destroy ]
   end
   resources :favorites, only: [ :index ]
   resource :profile, only: [ :show, :edit, :update ]
   resource :timeline, only: [ :show ]
+
+  namespace :api, defaults: { format: :json } do
+    scope 'articles/:article_id' do
+      resources :comments, only: [ :index, :create ]
+      resource :like, only: [ :create, :destroy, :show ]
+    end
+  end
 end
