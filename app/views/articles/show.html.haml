@@ -26,13 +26,13 @@
 
 
 .article
-  %h2 コメント一覧
+  %h2= I18n.t("article_show.article_comments")
   .comments_container
 
 .container
   .js-comment-form-toggle.btn-secondly
-    コメントを追加
+    = I18n.t("article_show.btn.submit_comment")
   .comment-form.hidden
     = textarea_tag :comment, nil, placeholder: "コメントを追加してください", rows: 5, class: "sm"
     .btn-secondly#comment-submit-btn
-      コメントを追加
+      = I18n.t("article_show.btn.submit_comment")
