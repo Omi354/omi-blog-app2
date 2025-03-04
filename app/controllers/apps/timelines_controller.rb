@@ -1,6 +1,4 @@
-class TimelinesController < ApplicationController
-  before_action :authenticate_user!
-
+class Apps::TimelinesController < Apps::ApplicationController
   def show
     @articles = Article.where(user_id: current_user.followings.pluck(:id))
                       .includes(:user)

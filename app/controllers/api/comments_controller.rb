@@ -1,15 +1,10 @@
-class CommentsController < ApplicationController
-  before_action :authenticate_user!, only: [ :new, :create ]
+class Api::CommentsController < Api::ApplicationController
+  before_action :authenticate_user!, only: [ :create ]
 
   def index
     article = Article.find(params[:article_id])
     comments = article.comments
     render json: comments
-  end
-
-  def new
-    article = Article.find(params[:article_id])
-    @comment = article.comments.build
   end
 
   def create

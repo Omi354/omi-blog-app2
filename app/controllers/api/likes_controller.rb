@@ -1,4 +1,4 @@
-class LikesController < ApplicationController
+class Api::LikesController < Api::ApplicationController
   before_action :authenticate_user!, only: [ :create, :destroy ]
   before_action :set_article
 
@@ -9,13 +9,11 @@ class LikesController < ApplicationController
 
   def create
     @article.likes.create(user_id: current_user.id)
-    flash[:notice] = "いいねしました"
     render json: { status: "ok", message: "いいねしました" }, status: :created
   end
 
   def destroy
     @article.likes.find_by(user_id: current_user.id).destroy!
-    flash[:notice] = "いいねを削除しました"
     render json: { status: "ok", message: "いいねを削除しました" }, status: :ok
   end
 
