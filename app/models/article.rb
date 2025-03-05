@@ -41,6 +41,6 @@ class Article < ApplicationRecord
     content_length = content.body.to_plain_text.length
     char_length = title.length + content_length
     minimum_length = 20
-    errors.add(:content, "#{minimum_length}文字以上の入力が必要です") if char_length <= minimum_length
+    errors.add(:content, "#{minimum_length}文字以上の入力が必要です") if char_length < minimum_length
   end
 end
