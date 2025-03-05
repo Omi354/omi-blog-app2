@@ -120,7 +120,5 @@ RSpec.describe Article, type: :model do
         expect(article.errors.messages[:content][0]).to eq('20文字以上の入力が必要です')
       end
     end
-
   end
-
 end

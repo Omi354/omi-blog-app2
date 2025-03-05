@@ -18,7 +18,7 @@ RSpec.describe "Api::Comments", type: :request do
         expect(response).to have_http_status(200)
         expect(res_body.size).to eq(comments.size)
         res_body.each_with_index do |comment, i|
-          expect(comment.slice('id', 'content')).to eq({'id' => comments[i].id, 'content' => comments[i].content})
+          expect(comment.slice('id', 'content')).to eq({ 'id' => comments[i].id, 'content' => comments[i].content })
         end
       end
     end

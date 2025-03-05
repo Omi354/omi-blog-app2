@@ -79,12 +79,12 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
-  
+
   # Deviseのテストヘルパーを使用可能にする設定
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :system
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
-  
+
   config.include FactoryBot::Syntax::Methods
 end
